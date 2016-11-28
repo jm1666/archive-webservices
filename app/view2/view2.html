@@ -1,0 +1,22 @@
+<label for="UserID">Google+ UserID</label>
+<input type="text" id="UserID" ng-model="UserID">
+<button data-ng-click="refreshPosts()">Fetch Posts</button>
+
+<div class="bootcards-cards mainview">
+    <div class="panel panel-default bootcards-media" ng-repeat="post in posts.slice(0,10)">
+        <div class="panel-body">
+            <img ng-src="{{post.actor.image.url}}"> {{post.actor.displayName}}
+            <p class="mainview">
+                {{post.object.content | unsafe}}
+            </p>
+        </div>
+        <img class="img-responsive" data-ng-show="post.object.attachments.image.url"
+             ng-src="{{post.object.attachments.image.url}}" alt="Image Card"/>
+
+        <div class="panel-footer">
+            <a href="{{post.url}}" target="_blank">
+                {{post.published | date:'medium'}}
+            </a>
+        </div>
+    </div>
+</div>

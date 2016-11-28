@@ -1,0 +1,34 @@
+<button type="button" class="btn btn-primary" ng-show="!logged"
+        data-ng-disabled="!facebookReady" data-ng-click="IntentLogin()">Login with Facebook
+</button>
+<button type="button" class="btn btn-danger" ng-show="logged"
+        data-ng-disabled="!facebookReady" data-ng-click="logout()">Logout
+</button>
+<button type="button" class="btn btn-info" ng-show="logged" data-ng-disabled="!facebookReady" data-ng-click="getfeed()">
+    Feed
+</button>
+
+<div ng-show="logged" class="mainview">
+    <p><img ng-src="{{avatar.url}}" ng-if="!avatar.is_silhouette"/> {{user.name}} </p>
+</div>
+
+<div class="bootcards-cards">
+    <div class="panel panel-default bootcards-media" ng-repeat="post in feed.data">
+        <div class="panel-body">
+            <div>
+                {{post.story || post.message}}
+            </div>
+
+            <div class="truncate" ng-show="post.link">
+                <a href="{{post.link}}" ng-show="post.link">{{post.link}}</a>
+            </div>
+        </div>
+        <img class="img-responsive" data-ng-show="post.full_picture" ng-src="{{post.full_picture}}" alt="Image Card"/>
+
+        <div class="panel-footer">
+            <a href="https://www.facebook.com/{{post.id|split:'_':0}}/posts/{{post.id|split:'_':1}}">
+                {{post.created_time | date:'medium'}}
+            </a>
+        </div>
+    </div>
+</div>

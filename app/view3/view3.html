@@ -1,0 +1,23 @@
+<button ng-click="connectButton()" id="connectButton" type="button" class="btn btn-primary">Connect Twitter</button>
+<button ng-click="refreshTimeline()" id="getTimelineButton" type="button" class="btn btn-info" style="display:none;">Get
+    My Timeline
+</button>
+<button ng-click="signOut()" id="signOut" type="button" class="btn btn-link" style="display:none;">Sign Out</button>
+
+
+<div class="bootcards-cards mainview">
+    <div class="panel panel-default bootcards-media" ng-repeat="t in tweets">
+        <div class="panel-body">
+            {{t.text}}
+            <br/>
+            <a href="{{t.entities.urls[0].expanded_url}}" target="_blank">{{t.entities.urls[0].display_url}}</a>
+        </div>
+        <div class="panel-footer">
+            <img ng-src="{{t.user.profile_image_url}}"/>
+            <a href="https://twitter.com/{{t.user.screen_name}}" target="_blank">
+                {{t.user.name}}
+            </a>
+            on {{t.created_at | date:'medium'}}
+        </div>
+    </div>
+</div>
